@@ -5,6 +5,9 @@
  * @returns A boolean indicating whether the provided string is a valid URL.
  */
 export default (urlString: string) => {
+  if (urlString.indexOf("localhost") !== -1) {
+    return true
+  }
   var urlPattern = new RegExp(
     "^(https?:\\/\\/)?" + // validate protocol
       "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
