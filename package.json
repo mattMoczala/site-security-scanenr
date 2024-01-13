@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "tsc && node dist/main.js"
+  },
+  "dependencies": {
+    "@types/puppeteer": "^7.0.4",
+    "axios": "^1.6.5",
+    "chalk": "^4.1.2",
+    "file-type": "^19.0.0",
+    "puppeteer": "^21.7.0",
+    "typescript": "^5.3.3"
+  }
+}
