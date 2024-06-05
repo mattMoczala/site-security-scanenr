@@ -26,6 +26,7 @@ export const scanSiteVulnerabilities = (url: string): Promise<void> => {
             (e) => (e as any)._reactRootContainer !== undefined
           ),
           usesJQuery: !!(window as any).jQuery,
+          jQueryVersion: (window as any).jQuery().jquery,
           usesAngular: !!(window as any).getAllAngularRootElements,
           usesJQueryConfirm: !!(window as any).$
             ? !!(window as any).$.hasOwnProperty("confirm")

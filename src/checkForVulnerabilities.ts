@@ -1,4 +1,5 @@
 import { ConsoleMessages } from "./Messages/ConsoleMessages";
+import puppeteer from "puppeteer";
 
 /**
  * Checks the provided content for potential vulnerabilities related to specific libraries and prints corresponding messages.
@@ -7,7 +8,7 @@ import { ConsoleMessages } from "./Messages/ConsoleMessages";
  * @param srcUrl - The source URL associated with the content.
  * @param libraries - An object indicating the libraries used, with boolean values for each library's presence.
  */
-export const checkContentForVulnerabilities = (
+export const checkContentForVulnerabilities = async (
   content: string,
   srcUrl: string,
   libraries: any
@@ -17,7 +18,7 @@ export const checkContentForVulnerabilities = (
       srcUrl
     );
   }
-  if (content.includes(".load(") && libraries.usesJQuery) {
+  if (content.includes(".load(") && libraries.usesJQuery && libraries.jQueryVersion < '1.9.1') {
     ConsoleMessages.vulnerabilityMessages.printJqueryLoad(srcUrl);
   }
   if (content.includes(".setIcon(") && libraries.usesJQueryConfirm) {

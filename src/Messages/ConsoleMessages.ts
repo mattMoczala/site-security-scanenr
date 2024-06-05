@@ -85,7 +85,7 @@ export class ConsoleMessages {
       libraries.push(chalk.bold('React'));
     }
     if (usedLibraries.usesJQuery) {
-      libraries.push(chalk.bold('jQuery'));
+      libraries.push(chalk.bold('jQuery') + ' ' + chalk.bold(usedLibraries.jQueryVersion));
     }
     if (usedLibraries.usesAngular) {
       libraries.push(chalk.bold('angular'));
@@ -100,5 +100,25 @@ export class ConsoleMessages {
     const librariesText = libraries.join(', ');
 
     console.log(chalk.inverse(`Script detected libraries implemented on site: "${chalk.underline(url)}" `) + chalk.inverse(`${librariesText}`));
+
+    if (usedLibraries.usesJQuery && usedLibraries.jQueryVersion) {
+
+      if (usedLibraries.jQueryVersion >= '1.2' && usedLibraries.jQueryVersion < '3.5.0') {
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2020-11023`)
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2020-11022`)
+      }
+      if (usedLibraries.jQueryVersion <= `1.8.3` && usedLibraries.jQueryVersion >= `1.0` ) {
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2020-7656`)
+      }
+      if (usedLibraries.jQueryVersion <= `3.3.1` && usedLibraries.jQueryVersion >= `1.0` ) {
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2019-11358`)
+      }
+      if (usedLibraries.jQueryVersion <= `1.8.3` && usedLibraries.jQueryVersion >= `1.7.1` ) {
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2012-6708`)
+      }
+      if (usedLibraries.jQueryVersion <= `2.2.1` && usedLibraries.jQueryVersion >= `1.0` ) {
+        console.log(`jQuery version ${usedLibraries.jQueryVersion} is known for vulnerability: CVE-2015-9251`)
+      }
+    }
   }
 }
